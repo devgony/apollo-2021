@@ -7,6 +7,7 @@ const GET_MOVIES = gql`
     movies {
       id
       medium_cover_image
+      isLiked @client
     }
   }
 `;
@@ -40,6 +41,16 @@ const Loading = styled.div`
   font-weight: 500;
   margin-top: 10px;
 `;
+
+const Movies = styled.div`
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 25px;
+  width: 60%;
+  position: relative;
+  top: -50px;
+`;
+
 export default () => {
   const { loading, error, data } = useQuery(GET_MOVIES);
   console.log(loading, error, data);
@@ -50,9 +61,16 @@ export default () => {
         <Subtitle>I love GraphQL</Subtitle>
       </Header>
       {loading && <Loading>Loading...</Loading>}
-      {!loading &&
-        data.movies &&
-        data.movies.map((m) => <Movie key={m.id} id={m.id}></Movie>)}
+      <Movies>
+        {data?.movies?.map((m) => (
+          <Movie
+            key={m.id}
+            id={m.id}
+            isLiked={m.isLiked}
+            bg={m.medium_cover_image}
+          ></Movie>
+        ))}
+      </Movies>
     </Container>
   );
 };
