@@ -8,3 +8,7 @@ Movie app built with React, Apollo and GraphQL
 data?.movie?.language
 
 ```
+
+## To connect between Home and Detail, we have to fetch id
+
+https://www.apollographql.com/docs/react/caching/cache-configuration/#data-normalization
