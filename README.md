@@ -71,6 +71,7 @@ const { loading, data, error } = useQuery(GET_MOVIE, {
 ## 4. Add temporary local data (isLiked) and use with @client
 
 ```typescript
+// apollo.js
 import { ApolloClient, InMemoryCache } from "@apollo/client";
 const client = new ApolloClient({
   cache: new InMemoryCache(),
@@ -83,6 +84,7 @@ const client = new ApolloClient({
 ```
 
 ```typescript
+// Home.js
 const GET_MOVIES = gql`
   {
     movies {
@@ -136,6 +138,7 @@ const [toggleLikeMove] = useMutation(LIKE_MOVIE, {
 ## 6. use styled with react
 
 ```typescript
+// Home.js
 import styled from "styled-components";
 const Container = styled.div`
   display: flex;
@@ -148,6 +151,7 @@ const Container = styled.div`
 ## 7. Optional chaining (by st4, create-react-app) instead of ternary with null state
 
 ```typescript
+// Detail.js
 data?.movie?.language;
 ```
 
